@@ -1,0 +1,76 @@
+1 基本字符匹配
+
+select prod_name from products
+#where prod_name like '%1000'
+where prod_name REGEXP '1000'
+
+2 匹配000的产品信息
+
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '.000'
+
+3 使用Or进行匹配
+
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '1000|2000'
+
+4 范围匹配
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '[12] ton'
+
+5 范围匹配结合or匹配
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '[1|2] ton'
+
+
+6 排他符
+
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '[^345] ton'
+
+
+7  特殊字符匹配
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '[1-9a-z] ton'
+
+8  '.'的使用
+
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '\\.'
+
+\\f
+\\n
+\\r
+\\t
+\\v
+
+\\\
+
+9  匹配多个实例
+
+
+select prod_name from products
+#where prod_name like 'JetPack _000'
+where prod_name REGEXP '\\([0-9] sticks?\\)'
+
+10 字符类
+
+select prod_name from products
+#where prod_name like 'JetPack _000'
+#where prod_name REGEXP '\\([0-9] sticks?\\)'
+#where prod_name REGEXP '[0-9][0-9][0-9][0-9]'
+where prod_name REGEXP '[[:digit:]]{4}'
+
+11 定位符
+select prod_name from products
+where prod_name REGEXP '^[\\.]'
+
+
+

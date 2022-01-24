@@ -1,0 +1,37 @@
+1 使用Where子句
+
+select prod_name ,prod_price from products where prod_price = 2.5
+
+2 使用where子句操作符。
+=
+>
+<
+>=
+<=
+<>
+!=
+between
+
+a: 价格小于10元的产品
+
+select prod_name ,prod_price from products where prod_price < 10;
+
+b: 价格小等于10元的产品
+select prod_name ,prod_price from products where prod_price <= 10;
+
+c 不是供应商1003 制造的产品
+select vend_id,prod_name from products where vend_id <> 1003;
+
+d 范围检查
+select prod_name ,prod_price from products where
+ prod_price <= 10 and prod_price >= 5;
+
+select prod_name ,prod_price from products where
+prod_price BETWEEN 5 and 10;
+
+e 空值检查
+NULL
+
+select prod_name from products where prod_price IS NULL;
+
+select * from customers where cust_email IS NULL;

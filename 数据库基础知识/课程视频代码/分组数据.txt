@@ -1,0 +1,41 @@
+1 创建分组
+
+select vend_id,count(*) from products
+GROUP BY vend_id
+
+2 创建摘要
+
+select vend_id,count(*) from products
+GROUP BY vend_id 
+with rollup
+
+3过滤分组
+select cust_id, count(*) from orders
+group by cust_id
+having count(*) = 2
+
+4 分组和排序
+select order_num,sum(item_price* quantity)as ordertotal  from orderitems
+group by order_num
+having sum(item_price* quantity) > 100
+
+select order_num,sum(item_price* quantity)as ordertotal  from orderitems
+group by order_num
+having sum(item_price* quantity) > 100
+order by ordertotal
+
+5  select语句的执行顺序
+
+select 
+
+from 
+
+where 
+
+group by 
+
+having 
+
+order by 
+
+limit 

@@ -1,0 +1,50 @@
+1 什么是游标
+
+在存储过程中，根据需要对数据集合进行前后浏览的一种应用。cursor
+
+2 使用/创建游标
+CREATE PROCEDURE processorders()
+begin 
+  declare ordernumbers CURSOR
+  FOR  
+  select order_num from orders;
+
+  --OPEN
+  open ordernumbers;
+
+  --CLOSE
+  close ordernumbers;
+
+end;
+
+
+3 浏览数据
+
+CREATE PROCEDURE processorders4()
+begin 
+
+  -- declare VARIABLES
+  DECLARE o int;
+  DECLARE done boolean DEFAULT 0;
+
+  declare ordernumbers CURSOR
+  FOR  
+  select order_num from orders;
+
+  declare continue handler for sqlstate '02000' set done=1;
+
+  -- OPEN
+  open ordernumbers;
+
+  REPEAT
+
+      FETCH ordernumbers into o;
+      select o;
+  until done end repeat;
+
+  -- CLOSE
+  close ordernumbers;
+
+end;
+
+call processorders4()

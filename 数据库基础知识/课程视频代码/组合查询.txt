@@ -1,0 +1,38 @@
+1 单个查询从不同的表中返回类似结构的数据
+   单个表执行多个查询，按照单个查询返回
+
+select vend_id,prod_id from products
+where prod_price <= 5
+union
+select vend_id,prod_id from products
+where vend_id in (1001,1002);
+
+
+select vend_id,prod_id from products
+where prod_price <= 5
+union
+select vend_id,prod_id from products
+where vend_id in (1001,1002);
+
+2 对组合结果进行排序
+
+select vend_id,prod_id ,prod_price from products
+where prod_price <= 5
+union 
+select vend_id,prod_id,prod_price from products
+where vend_id in (1001,1002)
+order by vend_id , prod_price
+;
+
+3 union的多次使用
+
+select vend_id,prod_id ,prod_price from products
+where prod_price <= 5
+union 
+select vend_id,prod_id,prod_price from products
+where vend_id in (1001,1002)
+union 
+select vend_id,prod_id,prod_price from products
+where vend_id in (1003,1005)
+order by vend_id , prod_price
+;

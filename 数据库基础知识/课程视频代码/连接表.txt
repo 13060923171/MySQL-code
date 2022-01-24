@@ -1,0 +1,41 @@
+1 为什么需要多个表
+
+供应商表
+1 3
+2 2
+3 0
+客户表
+1 5
+2 0
+产品表
+订单表
+
+2 如果我们需要完整数据 如何展现
+
+通过连接表
+
+PK FK 进行连接
+select vend_name,prod_name,prod_price from vendors ,products
+where vendors.vend_id = products.vend_id
+;
+
+3 连接条件
+
+笛卡儿积 join  表1数量*表2的数量
+select vend_name,prod_name,prod_price from vendors ,products；
+
+4 inner join
+select vend_name,prod_name,prod_price from vendors INNER JOIN
+products on vendors.vend_id= products.vend_id;
+
+5 多表连接
+
+select cust_name ,cust_contact from customers
+where cust_id in (select cust_id from orders 
+where order_num in (select order_num from orderitems
+where prod_id ='TNT2'));
+
+select cust_name ,cust_contact from orderitems oi , orders o , customers c
+where c.cust_id = o.cust_id and o.order_num = oi.order_num
+and prod_id= 'TNT2';
+

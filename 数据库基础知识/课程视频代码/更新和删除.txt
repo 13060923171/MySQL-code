@@ -1,0 +1,16 @@
+1 更新
+update
+
+update customers set cust_email = 'elmer@fudd.com'
+where cust_id =10005;
+
+
+select * from customers where cust_id =10005;
+
+update customers set
+ cust_email = 'elmer@fudd.com',cust_name = 'The Fudds'
+where cust_id =10005;
+
+2 删除数据 
+
+delete from customers where cust_id = 10006;

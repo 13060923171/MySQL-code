@@ -1,0 +1,44 @@
+1 备份
+mysqldump
+
+a 备份一个数据库
+
+C:\mysql\bin>mysqldump.exe -h 127.0.0.1 -P 3306 -uroot -p --database erp1 > c:\mysql\createdb.sql
+
+b 备份同一个库中多个表
+
+C:\mysql\bin>mysqldump.exe -h 127.0.0.1 -P 3306 -uroot -p  erp1 orders  > c:\mysql\createdb2.sql
+
+c 备份多个数据库
+C:\mysql\bin>mysqldump.exe -h 127.0.0.1 -P 3306 -uroot -p --database erp1 erp2 erp3 > c:\mysql\createdb3.sql
+
+d 备份所有数据库
+C:\mysql\bin>mysqldump.exe -h 127.0.0.1 -P 3306 -uroot -p --all-database  > c:\mysql\createdb.sql
+
+e 备份数据库中所有表，但是不含数据
+
+
+C:\mysql\bin>mysqldump.exe -h 127.0.0.1 -P 3306 -uroot -p --no-data --database erp1 > c:\mysql\createdb.sql
+
+
+f 备份数据自带删除老表功能。
+
+
+C:\mysql\bin>mysqldump.exe -h 127.0.0.1 -P 3306 -uroot -p --add-drop-table --add-drop-database erp1  > c:\mysql\createdb2.sql
+
+
+2  数据导入导出
+
+select into outfile 
+
+select * from customers into OUTFILE 'c:/mysql/data1.csv'
+
+
+导入语句
+
+load data infile 
+
+
+load data INFILE 'c:/mysql/data1.csv' into table customers2;
+
+select * from customers2;

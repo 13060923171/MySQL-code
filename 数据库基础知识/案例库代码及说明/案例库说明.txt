@@ -1,0 +1,70 @@
+vendors表
+用于存储供应商信息
+
+vend_id         供应商编号
+vend_name   供应商名字
+vend_address  地址
+vend_city         城市
+vend_state       州
+vend_zip          邮编
+vend_country  国家
+
+product 表
+包含产品目录
+
+prod_id   产品ID
+vend_id   供应商ID
+prod_name   产品名字
+prod_price    产品价格
+prod_desc    产品描述
+
+
+customers表
+
+cust_id  顾客ID
+cust_name   顾客名字
+cust_address   顾客地址
+cust_city        城市
+cust_state       州
+cust_zip        邮编
+cust_country  国家
+cust_contact  联系人
+cust_email    邮件地址
+
+orders表
+
+order_num    唯一订单号
+order_date   订单日期
+cust_id          客户订单ID
+
+
+orderitems 订单明细
+
+order_num  订单号
+order_item   订单物品号
+prod_id       产品ID
+quantity       数量
+item_price     价格
+
+productnotes表
+
+note_id    注释ID 
+prod_id   产品ID
+note_date  注释时间
+note_text    注释文本
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+1 自联结
+select prod_id,prod_name from products where vend_id = (
+
+select vend_id from products where prod_id = 'DTNTR');
+
+select p1.prod_id, p1.prod_name from products p1 , products p2
+where p1.vend_id = p2.vend_id
+and p2.prod_id='DTNTR';
+
+2 自然连接
+select c.* ,o.order_num,o.order_date from customers c , orders o ,orderitems oi
+where c.cust_id = o.cust_id and oi.order_num = o.order_num
+and oi.prod_id ='FB'
+
+3 外部连接
+
+select * from customers c ,orders o
+where c.cust_id = o.cust_id;
+
+select * from customers c LEFT JOIN orders o 
+on c.cust_id = o.cust_id;
+
+4 带有聚合函数的链接
+
+select cust_name,c.cust_id,count(*) from customers c ,orders o
+where c.cust_id = o.cust_id GROUP BY c.cust_id;
+
+select cust_name,c.cust_id,count(*) from customers c LEFT JOIN orders o 
+on c.cust_id = o.cust_id GROUP BY c.cust_id;

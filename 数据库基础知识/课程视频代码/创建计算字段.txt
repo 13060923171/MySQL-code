@@ -1,0 +1,23 @@
+1 ×Ö¶ÎÆ´½Ó
+
+select CONCAT(vend_name ,vend_country )
+
+from vendors;
+
+2 ¸ñÊ½»¯×Ö·û´®
+select CONCAT(vend_name , ' (' ,vend_country , ')' )
+
+from vendors;
+
+3 ¸ñÊ½»¯×Ö·û´®
+
+select CONCAT(vend_name , ' (' ,LTRIM(RTRIM(vend_country)) , ')' )
+
+from vendors;
+
+4 ×Ö¶Î±ðÃû
+
+select CONCAT(vend_name , ' (' ,LTRIM(RTRIM(vend_country)) , ')' )
+ as vend_title
+
+from vendors;

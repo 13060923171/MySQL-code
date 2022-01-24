@@ -1,0 +1,64 @@
+1 什么是视图 为什么使用视图
+
+简化sql语句，实现代码重用。
+隐藏业务逻辑
+
+2 如何创建视图
+
+create view productcustomers as 
+select cust_name,cust_contact FROM
+customers c, orders o ,orderitems oi 
+where c.cust_id = o.cust_id and 
+o.order_num = oi.order_num;
+
+alter view productcustomers as 
+select cust_name,cust_contact ,prod_id FROM
+customers c, orders o ,orderitems oi 
+where c.cust_id = o.cust_id and 
+o.order_num = oi.order_num;
+
+drop view productcustomers ;
+
+show create view productcustomers ;
+
+
+3 视图内容的格式化
+
+create view vendorlocation as 
+select CONCAT(RTRIM(vend_name) , ' (' , ltrim(RTRIM(vend_country)),')') from vendors 
+order by vend_name;
+
+select * from vendorlocation
+
+4 视图过滤
+
+create view customeemaillist as 
+select cust_id,cust_name,cust_email from customers
+where cust_email is not NULL;
+
+select * from customeemaillist
+
+5 计算字段视图
+create view orderprice as 
+select prod_id , quantity,item_price,order_num,
+quantity* item_price as total 
+from orderitems
+;
+
+alter view orderprice as 
+select prod_id , quantity,item_price,order_num,
+quantity* item_price as total 
+from orderitems
+;
+
+6 视图更新
+如果有下列情况，则不可以更新
+
+groupby 
+子查询
+jion
+min/max/sum
+distinct
+计算列
+
+update

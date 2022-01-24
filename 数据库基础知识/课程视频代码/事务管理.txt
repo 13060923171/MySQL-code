@@ -1,0 +1,43 @@
+1 事务处理
+用来维护数据库的完整性，它保证成批的sql操作要么全部成功，要么全部失败。
+
+2 事务前提
+
+INNOdb 支持
+myisam  不支持
+
+术语 
+transaction
+rollback
+commit 
+savepoint
+
+3 演示事务效果
+
+select * from customers2;
+start TRANSACTION;
+delete from customers2;
+select * from customers2;
+ROLLBACK;
+select * from customers2;
+
+
+4  使用commit
+
+select * from customers2;
+start TRANSACTION;
+delete from customers2;
+select * from customers2;
+commit;
+select * from customers2;
+
+5 使用 savepoint
+
+ select * from customers2;
+start TRANSACTION;
+delete from customers2 where cust_id = 10001;
+SAVEPOINT x1;
+delete from customers2 where cust_id = 10002;
+ select * from customers2;
+ROLLBACK to x1;
+ select * from customers2;

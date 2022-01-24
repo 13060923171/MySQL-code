@@ -1,0 +1,61 @@
+1 定义字符串全部大写
+select vend_name ,Upper(vend_name) as vend_name_upper 
+from vendors order by vend_name;
+
+2 实现大写/小写/去空格 
+Upper
+Lower
+LTrim
+RTrim
+
+3 substring功能 字符串截位
+
+select vend_name ,SUBSTRING(vend_name ,1,5) as vend_name_upper 
+from vendors order by vend_name;
+
+select vend_name ,SUBSTRING(vend_name ,-5,5) as vend_name_upper 
+from vendors order by vend_name;
+
+4 soundex() 函数功能
+
+select cust_name ,cust_contact from customers 
+where soundex(cust_contact) = soundex('Y Li')
+
+5 日期和时间处理
+
+select cust_id ,order_num ,order_date from orders
+where Date(order_date) = '2005-09-01'
+
+select cust_id ,order_num ,order_date from orders
+where Date(order_date) BETWEEN '2005-09-01' and '2005-09-30'
+
+select cust_id ,order_num ,order_date from orders
+where Year(order_date) = 2005 and MONTH(order_date) = 9
+
+6 常用时间处理函数
+
+adddate()
+
+addtime()
+
+curdate()
+
+curtime()
+
+date()
+
+datediff()
+
+day()
+
+year()
+
+month()
+
+hour()
+
+minute()
+
+now()
+
+time()

@@ -1,0 +1,71 @@
+1 什么是存储过程 为什么要使用
+a 处理订单 库存核实
+b 供应商进货
+c 入库退库
+
+多组sql语句形成的组合 存储过程。
+
+简化逻辑 封装业务模型 安全风险隔离
+
+
+2 创建存储过程
+
+create PROCEDURE productpricing()
+BEGIN
+select avg(prod_price) as avgprice 
+from products;
+end;
+
+delimiter //
+create PROCEDURE productpricing2()
+BEGIN
+select avg(prod_price) as avgprice 
+from products;
+end //
+delimiter ;
+
+3 使用存储过程
+
+call productpricing2()
+
+4 删除存储过程
+
+drop PROCEDURE productpricing2
+
+5 带有参数的存储过程
+
+create PROCEDURE productpricing2(
+out pl decimal(8,2),
+out ph decimal(8,2),
+out pa decimal(8,2)
+)
+BEGIN
+   select min(prod_price) into pl 
+   from products;
+   select max(prod_price) into ph 
+   from products;
+   select avg(prod_price) into pa 
+   from products;
+
+end;
+
+call productpricing2(@p1,@p2,@p3);
+select @p1,@p2,@p3;
+
+create procedure ordertotal (
+in onumber int,
+out ototal decimal(8,2)
+
+)
+
+BEGIN
+   select sum(item_price* quantity)
+    from orderitems
+    where order_num=onumber
+    into ototal;
+
+end;
+
+6 检查存储过程
+
+show create PROCEDURE ordertotal;

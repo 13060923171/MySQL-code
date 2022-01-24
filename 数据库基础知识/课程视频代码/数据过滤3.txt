@@ -1,0 +1,23 @@
+1 通配符过滤 Like操作符 %通配符
+
+select prod_id ,prod_name from products
+where prod_name like 'jet%'
+
+select prod_id ,prod_name from products
+where prod_name like '%anvil%'
+
+2  搜索模式
+
+select prod_id ,prod_name from products
+#where prod_name like '%anvil%'
+where prod_name like 's%e'
+
+3 _ 下划线通配符
+select prod_id ,prod_name from products
+#where prod_name like '%anvil%'
+where prod_name like '_ ton anvil'
+
+select prod_id ,prod_name from products
+#where prod_name like '%anvil%'
+where prod_name like '__ ton anvil'
+

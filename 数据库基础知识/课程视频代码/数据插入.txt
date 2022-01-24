@@ -1,0 +1,31 @@
+1 插入完整的一行
+customers
+insert  into customers values (  null,'ABC','100 Main street','Los angeles','CA','90046','USA',null,null )
+
+
+2 插入一部分数据
+  cust_id      int       NOT NULL AUTO_INCREMENT,
+  cust_name    char(50)  NOT NULL ,
+  cust_address char(50)  NULL ,
+  cust_city    char(50)  NULL ,
+  cust_state   char(5)   NULL ,
+  cust_zip     char(10)  NULL ,
+  cust_country char(50)  NULL ,
+  cust_contact char(50)  NULL ,
+  cust_email   char(255) NULL ,
+
+insert into customers (cust_name,cust_zip) values ('CDEF','99878');
+
+3 插入多个行
+insert into customers (cust_name,cust_zip) values ('2CDEF','199878');
+insert into customers (cust_name,cust_zip) values ('3CDEF','399878');
+insert into customers (cust_name,cust_zip) values ('4CDEF','599878');
+insert into customers (cust_name,cust_zip) values ('5CDEF','799878');
+
+insert into customers (cust_name,cust_zip)  values ('2CDEF','199878'),('3CDEF','399878'),('4CDEF','599878'),  ('5CDEF','799878');
+
+4  插入多行数据--查询其他表
+
+insert into customers2 select * from customers;
+
+

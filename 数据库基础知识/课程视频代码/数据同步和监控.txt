@@ -1,0 +1,28 @@
+1 同步
+两台数据库服务器 网络通畅 。
+
+a 关闭第一台服务器，启动log_bin功能
+b 每台服务器设置唯一的serverid 
+c 启动第一台服务器，开启master模式，检查日志位置。
+d 关闭第一台服务器，同步数据到第二台服务器上。
+e 启动第一台服务器
+f 启动第二台备份服务器 （配置serverid）
+g 配置第二台服务器作为备份节点。
+h 检查同步配置项，完成配置。
+
+2 实战数据库同步
+change master to 
+master_host='192.168.10.93',
+master_user='repl',
+master_password='123',
+master_port= 3306,
+master_log_file='repl.000002',
+master_log_pos=107;
+
+
+start slave;
+
+
+show VARIABLES like '%server_id%'
+
+show slave status\G

@@ -1,0 +1,38 @@
+1 组合where条件
+
+a and操作符
+
+select prod_id , prod_price,prod_name from products
+where vend_id= 1003 and prod_price <=10
+
+b or操作符
+
+select vend_id,prod_id , prod_price,prod_name from products
+#where vend_id= 1003 and prod_price <=10
+
+where vend_id = 1002 or vend_id = 1003
+
+2  计算次序
+
+
+select vend_id,prod_id , prod_price,prod_name from products
+#where vend_id= 1003 and prod_price <=10
+#where vend_id = 1002 or vend_id = 1003 ;
+where vend_id = 1002 or vend_id = 1003 and prod_price >=10;
+
+select vend_id,prod_id , prod_price,prod_name from products
+#where vend_id= 1003 and prod_price <=10
+#where vend_id = 1002 or vend_id = 1003 ;
+where vend_id = 1002 or (vend_id = 1003 and prod_price >=10);
+
+3 IN操作符
+
+select vend_id,prod_id , prod_price,prod_name from products
+#where vend_id= 1003 and prod_price <=10
+where vend_id IN (1002,1003);
+
+4 NOT操作符
+
+select vend_id,prod_id , prod_price,prod_name from products
+#where vend_id= 1003 and prod_price <=10
+where vend_id NOT IN (1002,1003);

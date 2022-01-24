@@ -1,0 +1,35 @@
+1 子查询
+
+找出物品TNT2的所有订单
+
+select order_num from orderitems
+where prod_id ='TNT2'
+
+20005  20007
+
+根据前一个步骤找出订单编号的所有客户
+
+select cust_id from orders 
+where order_num in (20005,20007);
+
+10001 10004
+
+根据前一个步骤返回所有的客户信息
+
+select cust_name ,cust_contact from customers
+where cust_id in (10001,10004);
+
+
+
+
+select cust_name ,cust_contact from customers
+where cust_id in (select cust_id from orders 
+where order_num in (select order_num from orderitems
+where prod_id ='TNT2'));
+
+2 计算字段作为子查询使用 
+
+
+select cust_name ,cust_state ,(select count(*) from orders 
+where orders.cust_id= customers.cust_id )  as orders
+from customers

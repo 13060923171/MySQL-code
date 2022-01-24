@@ -1,0 +1,35 @@
+1 什么是触发器
+在我们执行delete update insert语句时自动执行另外一组sql语句的功能。
+
+2 创建一个触发器
+
+create trigger newproduct after insert on products
+for each row select 'Product add' into @ee;
+
+3 验证触发器的效果
+
+drop TRIGGER newproduct;
+
+create trigger newproduct after insert on products
+for each row select NEW.prod_id into @ee;
+
+INSERT INTO products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+VALUES('ANV21', 1001, '3 ton anvil', 19.99,
+ '3 ton anvil, black, complete with handy hook and carrying case');
+
+
+select @ee
+
+4 delete触发器使用
+
+
+create trigger deleteorder  before  delete on orders
+for each row 
+BEGIN
+   insert into archive_orders(order_num,order_date,cust_id)
+    values (old.order_num,old.order_date,old.cust_id);
+
+end;
+
+5 update触发器使用
+

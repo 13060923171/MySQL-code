@@ -1,0 +1,28 @@
+1 avg函数
+
+select avg(prod_price) from products
+
+select avg(prod_price) from products
+where vend_id = 1003
+
+2 count 函数
+
+select count(prod_id) as num_count from products
+
+3 max / min
+
+select max(prod_price) from products
+
+select min(prod_price) from products
+
+4 sum 
+
+select sum(quantity) from orderitems where order_num = 20005
+
+
+5 多个汇总函数
+
+select avg(DISTINCT prod_price) , avg(prod_price) from products
+
+select count(*) as num_items , min(prod_price)
+,  max(prod_price)  , avg(prod_price) from products

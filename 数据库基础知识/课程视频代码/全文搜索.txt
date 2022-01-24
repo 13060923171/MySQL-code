@@ -1,0 +1,64 @@
+1 Innodb （不支持全文）  MyISAM （支持）
+productnote 支持全文搜索。
+
+2 如果全文搜索 
+like  regex  匹配
+match   against
+
+
+3 启用全文搜索功能
+
+CREATE TABLE productnotes
+(
+  note_id    int           NOT NULL AUTO_INCREMENT,
+  prod_id    char(10)      NOT NULL,
+  note_date datetime       NOT NULL,
+  note_text  text          NULL ,
+  PRIMARY KEY(note_id),
+  FULLTEXT(note_text)
+) ENGINE=MyISAM;
+
+4 使用全文搜索
+传统模式
+select note_text from productnotes
+where note_text like '%rabbit%'
+
+Full模式
+select note_text from productnotes
+where Match(note_text) AGAINST ('rabbit');
+
+5 查看一下词的优先级
+
+select note_text ,MATCH(note_text) AGAINST ('rabbit') from productnotes
+
+6 布尔文本查询
+select note_text  from productnotes
+where MATCH(note_text) 
+AGAINST ('heavy' IN BOOLEAN mode )
+
+select note_text  from productnotes
+where MATCH(note_text) 
+AGAINST ('heavy -rope*' IN BOOLEAN mode )
+
+
+布尔操作符
++  必须包含
+-   排除
+>   包含 增加等级
+<   包含 降低等级
+*   词尾通配符
+""  定义短句
+
+select note_text  from productnotes
+where MATCH(note_text) 
+AGAINST ('+rabbit +bait' IN BOOLEAN mode );
+
+select note_text, MATCH(note_text) 
+AGAINST ('+safe +(<combination)' IN BOOLEAN mode )  from productnotes
+where MATCH(note_text) 
+AGAINST ('+safe +(<combination)' IN BOOLEAN mode );
+
+select note_text, MATCH(note_text) 
+AGAINST ('+safe +(combination)' IN BOOLEAN mode )  from productnotes
+where MATCH(note_text) 
+AGAINST ('+safe +(combination)' IN BOOLEAN mode );
